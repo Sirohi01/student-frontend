@@ -2,7 +2,7 @@ import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, reset } from '../features/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, Home, BookOpen, Clock, Activity, BarChart2, Menu, X, Sparkles, Zap } from 'lucide-react';
+import { LogOut, Home, BookOpen, Clock, Activity, BarChart2, Menu, X, Sparkles, Zap, Settings, Trophy } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -10,6 +10,10 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const location = useLocation();
+    const authState = useSelector((state) => state.auth);
+
+    // Handle nested user object structure
+    const user = authState.user?.user || authState.user;
 
     const onLogout = () => {
         dispatch(logout());
@@ -23,6 +27,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         { name: 'Focus Session', icon: <Clock size={20} />, path: '/focus' },
         { name: 'Revision', icon: <Activity size={20} />, path: '/revision' },
         { name: 'Analytics', icon: <BarChart2 size={20} />, path: '/analytics' },
+        { name: 'Achievements', icon: <Trophy size={20} />, path: '/achievements' },
+        { name: 'Settings', icon: <Settings size={20} />, path: '/settings' },
     ];
 
     const sidebarVariants = {
@@ -44,6 +50,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                         onClick={toggleSidebar}
                     />
 
+                    {/* Sidebar */}
                     <motion.div
                         variants={sidebarVariants}
                         initial="hidden"
@@ -62,7 +69,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                                         <Zap className="w-5 h-5 text-white fill-current" />
                                     </div>
                                     <span className="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 tracking-tight">
-                                        Nexus
+                                        StudyAi
                                     </span>
                                 </div>
                                 <button onClick={toggleSidebar} className="lg:hidden text-gray-400 hover:text-white transition-colors">
@@ -75,13 +82,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                                     <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
                                     <div className="flex items-center justify-between relative z-10">
                                         <div>
-                                            <p className="text-xs font-bold text-indigo-400 uppercase tracking-wider">Level 12</p>
-                                            <p className="text-sm font-medium text-gray-300">Scholar</p>
+                                            <p className="text-xs font-bold text-indigo-400 uppercase tracking-wider">Welcome</p>
+                                            <p className="text-sm font-medium text-gray-300">{user?.name}</p>
                                         </div>
-                                        <Sparkles className="w-5 h-5 text-yellow-400 animate-pulse" />
+                                        <Sparkles className="w-6 h-6 text-indigo-400" />
                                     </div>
-                                    <div className="w-full h-1 bg-gray-700/50 rounded-full mt-3 overflow-hidden">
-                                        <div className="h-full bg-gradient-to-r from-indigo-400 to-pink-400 w-[75%] shadow-[0_0_10px_rgba(167,139,250,0.5)]" />
+                                    <div className="mt-3 bg-gray-900/50 rounded-full h-2 overflow-hidden relative z-10">
+                                        <div className="bg-gradient-to-r from-indigo-500 to-purple-500 h-full rounded-full" style={{ width: '0%' }}></div>
                                     </div>
                                 </div>
                             </div>
@@ -95,8 +102,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                                             to={item.path}
                                             onClick={() => window.innerWidth < 1024 && toggleSidebar()}
                                             className={`relative flex items-center space-x-3 px-4 py-3.5 rounded-xl transition-all duration-300 group overflow-hidden ${isActive
-                                                    ? 'text-white shadow-[0_0_20px_rgba(99,102,241,0.15)]'
-                                                    : 'text-gray-400 hover:text-gray-100'
+                                                ? 'text-white shadow-[0_0_20px_rgba(99,102,241,0.15)]'
+                                                : 'text-gray-400 hover:text-gray-100'
                                                 }`}
                                         >
                                             {isActive && (
@@ -162,7 +169,7 @@ const Layout = () => {
             <main className="flex-1 lg:h-screen lg:overflow-y-auto w-full relative z-10 transition-all scroll-smooth">
                 <div className="p-4 lg:p-8 max-w-[1600px] mx-auto min-h-screen">
                     <div className="lg:hidden mb-6 flex items-center justify-between glass-card p-4 rounded-2xl">
-                        <div className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-pink-400">Nexus AI</div>
+                        <div className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-pink-400">StudyAI</div>
                         <button
                             onClick={() => setIsSidebarOpen(true)}
                             className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-white transition-colors"

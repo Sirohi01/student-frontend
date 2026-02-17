@@ -5,7 +5,7 @@ const Planner = () => {
     return (
         <div className="animate-fade-in-up">
             <div className="mb-8">
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Smart Planner 📅</h1>
+                <h1 className="text-3xl font-bold text-white mb-2">Smart Planner 📅</h1>
                 <p className="text-gray-500 dark:text-gray-400 mt-1">
                     Manage your subjects and tasks efficiently.
                 </p>

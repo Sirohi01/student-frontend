@@ -52,7 +52,7 @@ const SubjectManager = () => {
 
             <form onSubmit={onSubmit} className="mb-8 space-y-4 relative z-10">
                 <div>
-                    <label className="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">
+                    <label className="block text-xs font-medium text-gray-300 uppercase tracking-wider mb-2">
                         New Subject
                     </label>
                     <input

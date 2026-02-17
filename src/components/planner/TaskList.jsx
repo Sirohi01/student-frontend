@@ -53,8 +53,8 @@ const TaskList = () => {
                         key={status}
                         onClick={() => setFilter(status)}
                         className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all border ${filter === status
-                                ? 'bg-indigo-600 text-white border-indigo-500 shadow-lg shadow-indigo-500/25'
-                                : 'bg-white/5 text-gray-400 border-white/5 hover:bg-white/10 hover:text-white'
+                            ? 'bg-indigo-600 text-white border-indigo-500 shadow-lg shadow-indigo-500/25'
+                            : 'bg-white/5 text-gray-400 border-white/5 hover:bg-white/10 hover:text-white'
                             }`}
                     >
                         {status.replace('-', ' ')}
@@ -104,7 +104,7 @@ const TaskList = () => {
                                     </div>
                                 </div>
                                 <div className={`px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider border ${task.status === 'completed' ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' :
-                                        task.status === 'in-progress' ? 'text-blue-400 bg-blue-500/10 border-blue-500/20' : 'text-gray-400 bg-gray-500/10 border-gray-500/20'
+                                    task.status === 'in-progress' ? 'text-blue-400 bg-blue-500/10 border-blue-500/20' : 'text-gray-400 bg-gray-500/10 border-gray-500/20'
                                     }`}>
                                     {task.status.replace('-', ' ')}
                                 </div>
@@ -116,7 +116,7 @@ const TaskList = () => {
                         <div className="w-16 h-16 bg-indigo-500/20 rounded-full flex items-center justify-center mb-4">
                             <Filter className="w-8 h-8 text-indigo-400 opacity-50" />
                         </div>
-                        <p className="text-gray-400">No tasks found.</p>
+                        <p className="text-gray-300">No tasks found.</p>
                         <button
                             onClick={() => setIsModalOpen(true)}
                             className="mt-3 text-indigo-400 hover:text-indigo-300 text-sm font-medium hover:underline"

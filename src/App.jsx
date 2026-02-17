@@ -6,6 +6,8 @@ import Planner from './pages/Planner';
 import Focus from './pages/Focus';
 import Revision from './pages/Revision';
 import Analytics from './pages/Analytics';
+import Achievements from './pages/Achievements';
+import Settings from './pages/Settings';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Layout from './components/Layout';
@@ -27,6 +29,8 @@ function App() {
                 <Route path="focus" element={<Focus />} />
                 <Route path="revision" element={<Revision />} />
                 <Route path="analytics" element={<Analytics />} />
+                <Route path="achievements" element={<Achievements />} />
+                <Route path="settings" element={<Settings />} />
                 {/* Add more protected routes here */}
               </Route>
             </Route>

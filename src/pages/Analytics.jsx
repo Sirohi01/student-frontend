@@ -23,32 +23,20 @@ const Analytics = () => {
     const dispatch = useDispatch();
     const { stats, isLoading } = useSelector((state) => state.sessions);
 
+
     useEffect(() => {
         dispatch(getStats());
     }, [dispatch]);
 
-    // Mock data generation for demo purposes if empty
-    const radarData = stats.length > 0 ? stats.map(s => ({
+    // Use only real data from backend
+    const radarData = stats.map(s => ({
         subject: s.subjectName,
         focus: s.avgFocus,
         time: (s.totalDuration / 60) * 10,  // Normalized
-        completion: Math.floor(Math.random() * 40) + 60 // Mock completion
-    })) : [
-        { subject: 'Math', focus: 80, time: 90, completion: 70 },
-        { subject: 'Physics', focus: 65, time: 60, completion: 85 },
-        { subject: 'History', focus: 90, time: 40, completion: 95 },
-        { subject: 'Chem', focus: 50, time: 70, completion: 60 },
-    ];
+        completion: s.completion || 0
+    }));
 
-    const trendData = [
-        { day: 'Mon', hours: 2.5, focus: 70 },
-        { day: 'Tue', hours: 3.8, focus: 85 },
-        { day: 'Wed', hours: 1.5, focus: 60 },
-        { day: 'Thu', hours: 4.2, focus: 90 },
-        { day: 'Fri', hours: 5.0, focus: 95 },
-        { day: 'Sat', hours: 3.0, focus: 75 },
-        { day: 'Sun', hours: 2.0, focus: 80 },
-    ];
+    const trendData = [];
 
     return (
         <div className="space-y-8 animate-fade-in-up pb-10">

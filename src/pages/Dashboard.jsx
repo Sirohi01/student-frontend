@@ -18,9 +18,12 @@ import { motion } from 'framer-motion';
 
 const Dashboard = () => {
     const dispatch = useDispatch();
-    const { user } = useSelector((state) => state.auth);
+    const authState = useSelector((state) => state.auth);
     const { stats, isLoading } = useSelector((state) => state.sessions);
     const { tasks } = useSelector((state) => state.tasks);
+
+    // Handle nested user object structure
+    const user = authState.user?.user || authState.user;
 
     useEffect(() => {
         dispatch(getStats());
@@ -75,7 +78,7 @@ const Dashboard = () => {
                             <span>System Online</span>
                         </div>
                         <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-2">
-                            Hello, <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">{user?.name?.split(' ')[0] || 'User'}</span>
+                            Hello, <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">{user?.name?.split(' ')[0]}</span>
                         </h1>
                         <p className="text-gray-400 max-w-lg text-lg">
                             Your neural network is optimized. Ready to enhance your cognitive parameters?

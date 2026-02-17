@@ -77,7 +77,6 @@ function Login() {
                             >
                                 StudyAI
                             </motion.h1>
-                            <p className="text-gray-400 font-medium tracking-wide">Enter the Nexus</p>
                         </div>
 
                         <form onSubmit={onSubmit} className="space-y-6">
