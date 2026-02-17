@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getStats } from '../features/studySessions/sessionSlice';
 import { getTasks } from '../features/tasks/taskSlice';
+import axios from 'axios';
 import {
     BarChart,
     Bar,
@@ -24,11 +25,31 @@ const Dashboard = () => {
 
     // Handle nested user object structure
     const user = authState.user?.user || authState.user;
+    const token = authState.user?.token;
+
+    const [streak, setStreak] = useState(null);
 
     useEffect(() => {
         dispatch(getStats());
         dispatch(getTasks());
-    }, [dispatch]);
+
+        // Fetch streak data
+        const fetchStreak = async () => {
+            try {
+                const config = {
+                    headers: { Authorization: `Bearer ${token}` },
+                };
+                const response = await axios.get('http://localhost:5000/api/v1/achievements/streak', config);
+                setStreak(response.data.data);
+            } catch (error) {
+                console.error('Error fetching streak:', error);
+            }
+        };
+
+        if (token) {
+            fetchStreak();
+        }
+    }, [dispatch, token]);
 
     // Transform stats for charts
     const chartData = stats.map(stat => ({
@@ -90,7 +111,7 @@ const Dashboard = () => {
                             <p className="text-xs text-gray-500 font-bold uppercase">Current Streak</p>
                             <p className="text-2xl font-bold text-white flex items-center justify-end">
                                 <Trophy className="w-5 h-5 text-yellow-500 mr-2" />
-                                3 Days
+                                {streak?.currentStreak || 0} Days
                             </p>
                         </div>
                     </div>
