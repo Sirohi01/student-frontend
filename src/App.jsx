@@ -7,6 +7,8 @@ import Focus from './pages/Focus';
 import Revision from './pages/Revision';
 import Analytics from './pages/Analytics';
 import Achievements from './pages/Achievements';
+import Notes from './pages/Notes';
+import Goals from './pages/Goals';
 import Settings from './pages/Settings';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -30,6 +32,8 @@ function App() {
                 <Route path="revision" element={<Revision />} />
                 <Route path="analytics" element={<Analytics />} />
                 <Route path="achievements" element={<Achievements />} />
+                <Route path="notes" element={<Notes />} />
+                <Route path="goals" element={<Goals />} />
                 <Route path="settings" element={<Settings />} />
                 {/* Add more protected routes here */}
               </Route>

@@ -2,7 +2,7 @@ import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, reset } from '../features/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, Home, BookOpen, Clock, Activity, BarChart2, Menu, X, Sparkles, Zap, Settings, Trophy } from 'lucide-react';
+import { LogOut, Home, BookOpen, Clock, Activity, BarChart2, Menu, X, Sparkles, Zap, Settings, Trophy, FileText, Target } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -26,6 +26,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         { name: 'Study Planner', icon: <BookOpen size={20} />, path: '/planner' },
         { name: 'Focus Session', icon: <Clock size={20} />, path: '/focus' },
         { name: 'Revision', icon: <Activity size={20} />, path: '/revision' },
+        { name: 'Notes', icon: <FileText size={20} />, path: '/notes' },
+        { name: 'Goals', icon: <Target size={20} />, path: '/goals' },
         { name: 'Analytics', icon: <BarChart2 size={20} />, path: '/analytics' },
         { name: 'Achievements', icon: <Trophy size={20} />, path: '/achievements' },
         { name: 'Settings', icon: <Settings size={20} />, path: '/settings' },
